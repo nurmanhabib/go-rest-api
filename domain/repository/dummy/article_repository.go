@@ -1,7 +1,8 @@
 package dummy
 
 import (
-	"github.com/nurmanhabib/go-rest-api/domain/model"
+    "fmt"
+    "github.com/nurmanhabib/go-rest-api/domain/model"
 )
 
 type articleRepository struct {
@@ -12,14 +13,14 @@ func (repo *articleRepository) All() []model.Article {
 	return repo.articles
 }
 
-func (repo *articleRepository) FindByID(ID int) model.Article {
+func (repo *articleRepository) FindByID(ID int) (*model.Article, error) {
 	for _, v := range repo.articles {
 		if v.ID == ID {
-			return v
+			return &v, nil
 		}
 	}
 
-	panic("ID not found")
+	return nil, fmt.Errorf("ResponseData Not Found")
 }
 
 func NewArticleRepository() model.ArticleRepository {

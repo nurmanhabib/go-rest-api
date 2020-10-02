@@ -9,5 +9,5 @@ type Article struct {
 
 type ArticleRepository interface {
 	All() []Article
-	FindByID(ID int) Article
+	FindByID(ID int) (*Article, error)
 }
